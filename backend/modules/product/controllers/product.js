@@ -115,3 +115,14 @@ exports.cart = (req, res) => {
         }
     });
 }
+exports.removeFromCart = (req, res) => {
+    //@ get all products
+    CartModel.deleteOne({ _id: req.params.id }, function(err, result) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.json(result);
+        }
+    });
+}

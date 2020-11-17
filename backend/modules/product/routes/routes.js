@@ -17,6 +17,7 @@ router
     .delete('/:id', fileObj['product'].delete)
     .post('/addToCart/', fileObj['product'].addToCart)
     .get('/cart/:userId', fileObj['product'].cart)
+    .delete('/cart/:id', fileObj['product'].removeFromCart)
     .get('/view/:id', fileObj['product'].view);
 
 

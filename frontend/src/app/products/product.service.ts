@@ -38,4 +38,8 @@ export class ProductService {
   viewCart(userId: string) {
     return this.http.get(this.backendUrl + 'cart/' + userId);
   }
+
+  removeFromCart(id: string) {
+    return this.http.delete(this.backendUrl + 'cart/' + id);
+  }
 }
