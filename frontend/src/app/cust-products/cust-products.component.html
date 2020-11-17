@@ -1,0 +1,23 @@
+<div *ngIf="successMessage" class="alert alert-success fade in alert-dismissible">
+    {{successMessage}}
+</div>
+<div class="row" *ngIf="products">
+    <div class="row">
+        <div class="card col-md-4" style="margin-bottom: 15px;" *ngFor="let product of products | paginate: { itemsPerPage: 9, currentPage: p }">
+            <img class="card-img-top" src="/assets/images/{{product.images}}" width="200px" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{product.name}}</h5>
+                <h5>Price: ${{product.price}}</h5>
+                <h6>SKU: {{product.sku}}</h6>
+                <p class="card-text">{{product.description | slice: 0:150}}</p>
+                <div>
+                    <a style="margin-left: 20px;" [routerLink]="['/viewProduct', product._id]" class="btn btn-primary">View</a>
+                    <a style="margin-left: 20px;" (click)="addToCart(product._id)" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

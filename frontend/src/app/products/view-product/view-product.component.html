@@ -1,0 +1,82 @@
+<div class="col-md-2"></div>
+
+<div class="col-md-8">
+    <form class="form" id="viewProductForm">
+        <h1 class="h3 mb-3 font-weight-normal text-center">View Product</h1>
+        <br />
+        <div *ngIf="successMessage" class="alert alert-success fade in alert-dismissible">
+            {{successMessage}}
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="productName">Product Name</label>
+                <input type="text" [(ngModel)]="product.name" maxlength="100" class="form-control" id="productName" disabled name="productName" placeholder="Enter Product Name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="sku">SKU</label>
+                <input type="text" [(ngModel)]="product.sku" class="form-control" id="sku" name="sku" disabled placeholder="Enter sku">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" disabled [(ngModel)]="product.gender" class="form-control">
+                    <option value="">Select Product Gender</option>
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                    <option value="children">Children</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="category">Category</label>
+                <select id="category" name="category" disabled [(ngModel)]="product.category" class="form-control">
+                    <option value="">Select Product Category</option>
+                    <option value="tops">Tops</option>
+                    <option value="bottoms">Bottoms</option>
+                    <option value="Jackets-and-coats">Jackets & Coats</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="productPrice">Price</label>
+                <input type="number" disabled [(ngModel)]="product.price" maxlength="100" class="form-control" id="productPrice" required="true" name="productPrice" placeholder="Enter Product Price">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="image">Image</label>
+                <select id="image" name="image" disabled [(ngModel)]="product.images" class="form-control">
+                    <option value="">Select Product Image</option>
+                    <option value="tops.jpg">Tops</option>
+                    <option value="bottoms.jpg">Bottoms</option>
+                    <option value="jackets.jpg">Jackets & Coats</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="productDescription">Product Description</label>
+                <textarea [(ngModel)]="product.description" maxlength="100" class="form-control" id="productDescription" disabled name="productDescription" placeholder="Enter Product Description">
+                    </textarea>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div *ngIf="error">
+                <label class="text-danger">
+                    {{error}}
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3"></div>
+            <div class="form-group col-md-3">
+                <button class="btn btn-lg btn-secondary btn-block" [routerLink]="['/products']">Back</button>
+            </div>
+            <div class="form-group col-md-3">
+                <button class="btn btn-lg btn-primary btn-block" [routerLink]="['/editProduct', product._id]" type="submit">Edit Product</button>
+            </div>
+            <div class="form-group col-md-3"></div>
+        </div>
+    </form>
+</div>
