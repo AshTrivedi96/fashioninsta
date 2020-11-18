@@ -7,7 +7,7 @@ import { Register } from './model/registration.model';
 })
 export class RegistrationService {
 
-  backendUrl = '/api/admin/';
+  backendUrl = '/api/user/';
   constructor(private http: HttpClient) { }
   register(register: Register) {
     console.log(register);

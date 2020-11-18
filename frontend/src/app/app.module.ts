@@ -10,15 +10,18 @@ import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { DataTablesModule } from 'angular-datatables';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductsComponent } from './products/products.component';
-import { AddProductComponent } from './products/add-product/add-product.component';
-import { ViewProductComponent } from './products/view-product/view-product.component';
-import { EditProductComponent } from './products/edit-product/edit-product.component';
-import { UsersComponent } from './users/users.component';
-import { CustProductsComponent } from './cust-products/cust-products.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ViewCustProductComponent } from './view-cust-product/view-cust-product.component';
-import { CartComponent } from './cart/cart.component';
+import { ProductsComponent } from './modules/product/list-products/products.component';
+import { AddProductComponent } from './modules/product/add-product/add-product.component';
+import { ViewProductComponent } from './modules/product/view-product/view-product.component';
+import { EditProductComponent } from './modules/product/edit-product/edit-product.component';
+import { UsersComponent } from './modules/user/list-users/users.component';
+import { CustProductsComponent } from './modules/customer/cust-products/cust-products.component';
+import { ViewCustProductComponent } from './modules/customer/cust-product-view/cust-product-view.component';
+import { CartComponent } from './modules/customer/cart/cart.component';
+import { ViewUserComponent } from './modules/user/view-user/view-user.component';
+import { EditUserComponent } from './modules/user/edit-user/edit-user.component';
+import { AddUserComponent } from './modules/user/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { CartComponent } from './cart/cart.component';
     UsersComponent,
     CustProductsComponent,
     ViewCustProductComponent,
-    CartComponent
+    CartComponent,
+    ViewUserComponent,
+    EditUserComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

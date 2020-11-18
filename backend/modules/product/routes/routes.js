@@ -18,10 +18,11 @@ router
     .post('/addToCart/', fileObj['product'].addToCart)
     .get('/cart/:userId', fileObj['product'].cart)
     .delete('/cart/:id', fileObj['product'].removeFromCart)
+    .delete('/removeAll/:userId', fileObj['product'].removeAllProductsFromCart)
     .get('/view/:id', fileObj['product'].view);
 
 
 module.exports = {
     router: router,
-    base: '/api/admin/product'
+    base: '/api/product'
 };

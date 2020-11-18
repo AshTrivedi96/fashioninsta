@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
+import { LoginResponse } from '../login/model/login.response.model';
 import { Register } from './model/registration.model';
 import { RegisterResponse } from './model/registration.res.model';
 import { RegistrationService } from './registration.service';
@@ -12,19 +13,23 @@ import { RegistrationService } from './registration.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private service: RegistrationService, private loginService: LoginService, private router: Router) {
-    this.loginService.currentData.subscribe(currentData => this.isAdmin = currentData['isAdmin'])
+  constructor(private service: RegistrationService,private router: Router) {
   }
 
   register = new Register();
   loginError: string;
   msg: string;
+  isAdmin: boolean;
   ngOnInit(): void {
+    const loginResponse: LoginResponse = JSON.parse(localStorage.getItem('auth'));
+    this.isAdmin = loginResponse.result.isAdmin;
     this.register.gender = '';
   }
-
-  isAdmin = this.loginService.isAdmin;
-  onRegister() {
+  onRegister(isValid: boolean) {
+    // check form validation
+    if (!isValid) {
+      return;
+    }
     console.log(this.register);
     this.service.register(this.register)
       .subscribe(
@@ -37,9 +42,4 @@ export class RegistrationComponent implements OnInit {
         });
   }
 
-  keyDownFunction(event) {
-    if (event.keyCode === 13) {
-      this.onRegister();
-    }
-  }
 }

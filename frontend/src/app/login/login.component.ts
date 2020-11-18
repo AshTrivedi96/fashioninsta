@@ -28,16 +28,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onLogin() {
+  onLogin(isValid: boolean) {
+    // check form validation
+    if (!isValid) {
+      return;
+    }
     console.log(this.login);
     this.errorMessage = '';
     this.successMessage = '';
     this.service.login(this.login)
       .subscribe(
         (loginResponse: LoginResponse) => {
-          this.service.setUserDetails(loginResponse.result);
           localStorage.setItem('auth', JSON.stringify(loginResponse));
-
+          this.service.fireIsLoggedIn.emit(loginResponse); // you can pass here whatever you want 
           if (loginResponse.result.isAdmin) {
             this.router.navigate(['products']);
           } else {
@@ -50,9 +53,4 @@ export class LoginComponent implements OnInit {
         });
   }
 
-  keyDownFunction(event) {
-    if (event.keyCode === 13) {
-      this.onLogin();
-    }
-  }
 }

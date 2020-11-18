@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './login/login.service';
-import { Login } from './login/model/login.model';
 import { LoginResponse } from './login/model/login.response.model';
 
 @Component({
@@ -18,20 +17,16 @@ export class AppComponent implements OnInit {
   isAdmin: boolean;
 
   ngOnInit(): void {
-    let loginResponse: LoginResponse = JSON.parse(localStorage.getItem('auth'));
-    if (loginResponse) {
-      this.loginService.setUserDetails(loginResponse.result);
-    }
-
-    this.loginService.currentData.subscribe(currentData => {
-      this.userName = currentData['first_name'];
-      this.isAdmin = currentData['isAdmin'];
+    this.loginService.getEmitter().subscribe((loginResponseEmitter: LoginResponse) => {
+      this.userName = loginResponseEmitter.result.first_name;
+      this.isAdmin = loginResponseEmitter.result.isAdmin;
     });
-
+    const loginResponse: LoginResponse = JSON.parse(localStorage.getItem('auth'));
+    this.userName = loginResponse.result.first_name;
+    this.isAdmin = loginResponse.result.isAdmin;
   }
 
   logout(): void {
-    this.loginService.setUserDetails(null);
     localStorage.removeItem('auth');
     this.router.navigate(['/']);
     this.userName = '';
